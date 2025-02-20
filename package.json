@@ -28,8 +28,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"npm run server:dev\"",
     "build": "react-scripts build",
+    "server:dev": "nodemon server/server.js",
+    "deploy": "npm run build && rsync -avz --delete build/ root@bushtueva.am:/var/www/bushtueva.am/crm/build/ && ssh root@bushtueva.am 'pm2 restart crm-backend'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{js,jsx}",
@@ -55,7 +57,9 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "eslint": "^8.40.0",
+    "nodemon": "^3.1.9",
     "prettier": "^2.8.8",
     "source-map-explorer": "^2.5.3"
   }
