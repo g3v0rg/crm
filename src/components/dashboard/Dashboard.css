@@ -1,0 +1,50 @@
+/* src/components/dashboard/Dashboard.css */
+
+/* Override chart colors */
+.recharts-sector,
+.recharts-rectangle,
+.recharts-bar-rectangle,
+.recharts-area-dot,
+.recharts-line-dot {
+  stroke: none !important;
+}
+
+/* Override pie chart colors to grayscale */
+.recharts-pie-sector:nth-child(1) path {
+  fill: #000000 !important;
+}
+.recharts-pie-sector:nth-child(2) path {
+  fill: #333333 !important;
+}
+.recharts-pie-sector:nth-child(3) path {
+  fill: #555555 !important;
+}
+.recharts-pie-sector:nth-child(4) path {
+  fill: #777777 !important;
+}
+
+/* Override bar chart colors to grayscale */
+.recharts-bar-rectangle:nth-child(1) path {
+  fill: #000000 !important;
+}
+.recharts-bar-rectangle:nth-child(2) path {
+  fill: #333333 !important;
+}
+.recharts-bar-rectangle:nth-child(3) path {
+  fill: #555555 !important;
+}
+.recharts-bar-rectangle:nth-child(4) path {
+  fill: #777777 !important;
+}
+
+/* Status cards */
+.MuiCard-root[style*="background-color"] {
+  background-color: #FFFFFF !important;
+  border-top: 4px solid #000000 !important;
+}
+
+/* Remove colorful status indicators */
+[class*="profit-"] {
+  color: #000000 !important;
+  background-color: transparent !important;
+}
