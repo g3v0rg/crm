@@ -10,17 +10,43 @@ import {
   AppBar as MuiAppBar,
   Box, 
   Toolbar,
-  useTheme
+  useTheme,
+  Button
 } from '@mui/material';
 import { Menu } from 'react-admin';
 import ProjectIcon from '@mui/icons-material/BusinessCenter';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/ExitToApp';
 import PropTypes from 'prop-types';
 
 // Constants
 const SIDEBAR_FULL_WIDTH = 200;
 const SIDEBAR_COLLAPSED_WIDTH = 64;
 const APP_BAR_HEIGHT = 64;
+
+// Custom Logout Button component
+const CustomLogoutButton = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    window.location.reload();
+  };
+
+  return (
+    <Button
+      color="inherit"
+      onClick={handleLogout}
+      startIcon={<LogoutIcon />}
+      sx={{
+        color: '#FFFFFF',
+        '&:hover': {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        }
+      }}
+    >
+      Logout
+    </Button>
+  );
+};
 
 // Custom App Bar component
 const CustomAppBar = (props) => {
@@ -72,9 +98,7 @@ const CustomAppBar = (props) => {
         <Title defaultTitle="Production Cost Management" />
         
         <Box flex="1" />
-        <UserMenu>
-          <Logout />
-        </UserMenu>
+        <CustomLogoutButton />
       </Toolbar>
     </MuiAppBar>
   );
@@ -200,7 +224,7 @@ const CustomLayout = (props) => {
           backgroundColor: '#FDFDFD',
           fontSize: '0.875rem',
           boxSizing: 'border-box',
-          minWidth: 0, // Important for flexbox overflow
+          minWidth: 0,
         },
         '& .RaSidebar-docked': {
           backgroundColor: '#000000 !important',
@@ -253,7 +277,6 @@ const CustomLayout = (props) => {
           transition: 'width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms',
           overflowX: 'hidden',
         },
-        // Direct style for menu items
         '& [class*="RaMenuItemLink"]': {
           color: '#FFFFFF !important',
           '&:hover': {
@@ -263,11 +286,9 @@ const CustomLayout = (props) => {
             backgroundColor: '#333333 !important',
           }
         },
-        // Force icons to be white
         '& .RaSidebar-root .MuiSvgIcon-root': {
           color: '#FFFFFF !important',
         },
-        // Set overall font size
         fontSize: '0.875rem',
       }}
     />
