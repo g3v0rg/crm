@@ -1,7 +1,9 @@
 import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
 
-const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const apiUrl = process.env.NODE_ENV === 'development' 
+  ? 'http://localhost:3001/api'
+  : '/api';
 const httpClient = fetchUtils.fetchJson;
 
 /**
